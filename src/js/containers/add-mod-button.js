@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
-import {addNewMod} from '../actions/index';
+import {connect} from 'react-redux';
+import {addNewAffix} from '../actions/index';
 
 
-export default class AddModButton extends Component {
+class AddModButton extends Component {
     render() {
         return (
-            <button onClick={() => this.props.addNewMod()}>ADD</button>
+            <button onClick={() => this.props.addNewAffix()}>ADD</button>
         );
     }
 }
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({addNewAffix: addNewAffix}, dispatch);
+}
+export default connect(null, matchDispatchToProps)(AddModButton);

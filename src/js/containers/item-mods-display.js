@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
  * */
 
 class ItemModsDisplay extends Component {
-
     formatAffixData() {
       var A = this.props.currentAffixs;
       var arr = [];
@@ -21,9 +20,9 @@ class ItemModsDisplay extends Component {
       }
       return arr.map((affix) => {
           return (
-              <li>
-                  {affix.amount} {affix.stat}
-              </li>
+              <div>
+                  {affix.stat} {affix.type} {affix.tier} {affix.value}
+              </div>
           );
       });
     }
@@ -33,9 +32,9 @@ class ItemModsDisplay extends Component {
             return (<div>No Mods</div>);
         }
         return (
-            <ul>
+          <div>
                 {this.formatAffixData()}
-            </ul>
+          </div>
         );
     }
 }
@@ -46,5 +45,4 @@ function mapStateToProps(state) {
         currentAffixs: state.currentAffixs
     };
 }
-
 export default connect(mapStateToProps)(ItemModsDisplay);
