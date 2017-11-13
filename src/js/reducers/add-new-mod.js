@@ -1,4 +1,4 @@
-export default function (state = [[{stat:'test', type:'prefix', tier:1, value:5 }]], action) {
+export default function (state = [[{affix:'Flat Evasion', stat:'Flat Evasion', type:'Prefix', tier:1, value:5 }]], action) {
     switch (action.type) {
         case 'ADD_NEW_AFFIX':
             let newArray = state.slice();

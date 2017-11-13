@@ -1,4 +1,5 @@
 import {BodyDEX} from '../all-mods';
+import store from 'D:/Coding Projects/PoE-Craft-Simulator/src/index';
 
 
 export const selectUser = (user) => {
@@ -18,25 +19,56 @@ export const addNewAffix = () => {
 
 function chooseRandomAffix() {
     var baseMods = BodyDEX;
-    var chosenMod =  chooseRandomMod(baseMods);
+    var filteredMods = filterBaseMods(baseMods);
+    var chosenMod =  chooseRandomMod(filteredMods);
     var chosenTier = chooseRandomTier(chosenMod);
     var chosenValue = chooseRandomValue(chosenTier);
-    console.log(chosenMod);
-    console.log(chosenTier);
-    console.log(chosenValue);
-    return  [{"stat": chosenMod[0].Stat,
-                    "type": chosenMod[0].Type,
-                    "tier": chosenTier.tier,
-                    "value": chosenValue.chosenValue}]
-
-    //return {
-      //newAffix
-    //}
+    if (chosenMod.length===1) {
+      return  [{"affix": chosenMod[0].Name,
+                "stat": chosenMod[0].Stat,
+                "type": chosenMod[0].Type,
+                "tier": chosenTier[0].tier,
+                "value": chosenValue.chosenValue[0]}];
+    } else if(chosenMod.length===2) {
+      return  [{"affix": chosenMod[0].Name,
+                "stat": chosenMod[0].Stat,
+                "type": chosenMod[0].Type,
+                "tier": chosenTier[0].tier,
+                "value": chosenValue.chosenValue[0]},
+               {"affix": chosenMod[1].Name,
+                "stat": chosenMod[1].Stat,
+                "type": chosenMod[1].Type,
+                "tier": chosenTier[1].tier,
+                "value": chosenValue.chosenValue[1]}];
+    }
 };
 
+function filterBaseMods(baseMods) {
+    var affixAlreadyExists = [];
+    var allowed = Object.keys(baseMods);
+    for (var i=0; i<store.getState().currentAffixs.length; i++) {
+      affixAlreadyExists.push(store.getState().currentAffixs[i][0].affix);
+    }
+    for (var j=0; j<affixAlreadyExists.length; j++) {
+      allowed = allowed.filter(item => item !==affixAlreadyExists[j]);
+    }
+    console.log(allowed);
+    console.log(store.getState().currentAffixs);
+    var filteredMods = Object.keys(baseMods)
+      .filter(key => allowed.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = baseMods[key];
+        return obj;
+      }, {});
+    console.log(filteredMods);
+    console.log(affixAlreadyExists);
+    return {
+      filteredMods
+    }
+};
 function chooseRandomTier(chosenMod) {
     var tierNames = Object.keys(chosenMod[0].Tiers);
-    var chosenTier;
+    var chosenTier =[];
     var tierWeightArr = [];
     var totalTierWeight = 0;
     for (var i=0; i<tierNames.length; i++) {
@@ -49,7 +81,8 @@ function chooseRandomTier(chosenMod) {
     for (var l=0; l<tierNames.length; l++) {
       random -= tierWeightArr[l];
       if (random<0) {
-        chosenTier = chosenMod[0].Tiers[tierNames[l]];
+        for (var k=0; k<chosenMod.length; k++) {
+          chosenTier.push(chosenMod[k].Tiers[tierNames[l]])};
         return chosenTier
       }
     }
@@ -58,13 +91,13 @@ function chooseRandomTier(chosenMod) {
     }
 };
 
-function chooseRandomMod(baseMods) {
-    var baseModNames = Object.keys(baseMods);
+function chooseRandomMod(filteredMods) {
+    var baseModNames = Object.keys(filteredMods.filteredMods);
     var chosenMod;
     var modWeightArr = [];
     var totalModWeight = 0;
     for (var i=0; i<baseModNames.length; i++) {
-        modWeightArr.push(baseMods[baseModNames[i]][0].Weight);
+        modWeightArr.push(filteredMods.filteredMods[baseModNames[i]][0].Weight);
     }
     for (var k=0; k<modWeightArr.length; k++) {
       totalModWeight += modWeightArr[k];
@@ -73,7 +106,7 @@ function chooseRandomMod(baseMods) {
     for (var j=0; j<baseModNames.length; j++) {
       random -= modWeightArr[j];
       if (random<0) {
-        chosenMod = baseMods[baseModNames[j]];
+        chosenMod = filteredMods.filteredMods[baseModNames[j]];
         return chosenMod
       }
     }
@@ -83,9 +116,11 @@ function chooseRandomMod(baseMods) {
 };
 
 function chooseRandomValue(chosenTier) {
-    var min = Math.ceil(chosenTier.range[0]);
-    var max = Math.floor(chosenTier.range[1]);
-    var chosenValue = Math.floor(Math.random()*(max-min+1))+min;
+    var chosenValue = [];
+    for (var i=0; i<chosenTier.length; i++) {
+      var min = Math.ceil(chosenTier[i].range[0]);
+      var max = Math.floor(chosenTier[i].range[1]);
+      chosenValue.push(Math.floor(Math.random()*(max-min+1))+min)};
     return {
       chosenValue
     }
