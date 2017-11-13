@@ -1,5 +1,5 @@
 import {BodyDEX} from '../all-mods';
-import store from 'D:/Coding Projects/PoE-Craft-Simulator/src/index';
+import store from '../../index';
 
 
 export const selectUser = (user) => {
@@ -11,10 +11,17 @@ export const selectUser = (user) => {
 };
 
 export const addNewAffix = () => {
-    return {
+    if (store.getState().currentAffixs.length<6) {
+      return {
         type: 'ADD_NEW_AFFIX',
         payload: chooseRandomAffix()
-    }
+      };
+    } else {
+        alert("No more room for mods");
+      return {
+        type: 'ITEM_AFFIXS_FULL'
+      }
+    };
 };
 
 function chooseRandomAffix() {
@@ -44,28 +51,46 @@ function chooseRandomAffix() {
 };
 
 function filterBaseMods(baseMods) {
-    var affixAlreadyExists = [];
+    var unAllowedAffixs = [];
     var allowed = Object.keys(baseMods);
+    var prefixCount = 0;
+    var suffixCount = 0;
     for (var i=0; i<store.getState().currentAffixs.length; i++) {
-      affixAlreadyExists.push(store.getState().currentAffixs[i][0].affix);
+      unAllowedAffixs.push(store.getState().currentAffixs[i][0].affix);
+      if (store.getState().currentAffixs[i][0].type==="Prefix") {
+        prefixCount++
+      } else if (store.getState().currentAffixs[i][0].type==="Suffix"){
+        suffixCount++
+      };
     }
-    for (var j=0; j<affixAlreadyExists.length; j++) {
-      allowed = allowed.filter(item => item !==affixAlreadyExists[j]);
+    if (prefixCount===3) {
+      for (var m=0; m<allowed.length; m++) {
+        if (baseMods[allowed[m]][0].Type==="Prefix") {
+          unAllowedAffixs.push(allowed[m]);
+        }
+      }
     }
-    console.log(allowed);
-    console.log(store.getState().currentAffixs);
+    if (suffixCount===3) {
+      for (var n=0; n<allowed.length; n++) {
+        if (baseMods[allowed[n]][0].Type==="Suffix") {
+          unAllowedAffixs.push(allowed[n]);
+        }
+      }
+    }
+    for (var j=0; j<unAllowedAffixs.length; j++) {
+      allowed = allowed.filter(item => item !==unAllowedAffixs[j]);
+    }
     var filteredMods = Object.keys(baseMods)
       .filter(key => allowed.includes(key))
       .reduce((obj, key) => {
         obj[key] = baseMods[key];
         return obj;
       }, {});
-    console.log(filteredMods);
-    console.log(affixAlreadyExists);
     return {
       filteredMods
     }
 };
+
 function chooseRandomTier(chosenMod) {
     var tierNames = Object.keys(chosenMod[0].Tiers);
     var chosenTier =[];
