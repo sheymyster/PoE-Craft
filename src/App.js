@@ -1,16 +1,12 @@
 import React from 'react';
 import ItemModsDisplay from './js/containers/item-mods-display';
-import AddModButton from './js/containers/add-mod-button';
+import CraftingButtonField from './js/containers/add-mod-button';
 require('./index.css');
 
 const App = () => (
-  <div>
-    <div className='itemStatsContainer'>
+  <div className='entireContainer'>
       <ItemModsDisplay />
-    </div>
-    <div>
-      <AddModButton />
-    </div>
+      <CraftingButtonField />
   </div>
 );
 

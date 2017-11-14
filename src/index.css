@@ -1,9 +1,134 @@
-.itemStatsContainer {
-	display: flex;
-	flex-direction: row;
-	background-color: cyan;
+@font-face {
+    font-family: poefont;
+    src: url('./assets/Fonts/fontin.ttf');
 }
 
-.testButton {
-	background-color: #4CAF50;
+html {
+	background: url('./assets/MainBackground.jpg') no-repeat center center;
+	background-size: cover;
+	border-style: solid;
+	border-color: green;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	height: 100%;
+	border-style: solid;
+	border-color: purple;
+}
+
+#root {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	border-style: solid;
+	border-color: yellow;
+	min-height: 100%;
+}
+
+.entireContainer {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	font-family: poefont;
+	font-size: 1em;
+	border-style: solid;
+	border-color: white;
+	border-width: 2px;
+	min-height: 70%;
+	width: 70%;
+}
+
+.itemStatsContainer {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	border-style: solid;
+	border-color: red;
+	border-width: 2px;
+	background-color: black;
+	padding: 4px;
+}
+
+.itemImage {
+	align-self: center;
+}
+
+.tooltipText {
+	text-align: center;
+}
+
+#affix, #qualityValue {
+	color: #88f;
+}
+
+#propertyText {
+	color: #8f8f8f;
+}
+
+#propertyValue {
+	color: white;
+}
+
+.buttonContainer {
+	border-style: solid;
+	border-color: orange;
+	background-color: black;
+}
+
+button {
+	height: 50px;
+	width: 50px;
+	border: none;
+}
+
+#transmute {
+	background: url('./assets/Buttons/Transmute.png') no-repeat;
+	background-size: 100%;
+}
+
+#augment {
+	background: url('./assets/Buttons/Augment.png') no-repeat;
+	background-size: 100%;
+}
+
+#alteration {
+	background: url('./assets/Buttons/Alteration.png') no-repeat;
+	background-size: 100%;
+}
+
+#regal {
+	background: url('./assets/Buttons/Regal.png') no-repeat;
+	background-size: 100%;
+}
+
+#exalt {
+	background: url('./assets/Buttons/Exalt.png') no-repeat;
+	background-size: 100%;
+}
+
+#chaos {
+	background: url('./assets/Buttons/Chaos.png') no-repeat;
+	background-size: 100%;
+}
+
+#alchemy {
+	background: url('./assets/Buttons/Alchemy.png') no-repeat;
+	background-size: 100%;
+}
+
+#scour {
+	background: url('./assets/Buttons/Scour.png') no-repeat;
+	background-size: 100%;
 }

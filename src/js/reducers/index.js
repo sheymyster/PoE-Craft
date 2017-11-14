@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import AddNewAffixReducer from './add-new-mod';
+import ItemPropertiesReducer from './item-properties-reducer';
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
@@ -7,7 +8,8 @@ import AddNewAffixReducer from './add-new-mod';
  * */
 
 const allReducers = combineReducers({
-    currentAffixs: AddNewAffixReducer
+    currentAffixs: AddNewAffixReducer,
+    currentProperties: ItemPropertiesReducer
 });
 
 export default allReducers

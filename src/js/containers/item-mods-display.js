@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import ItemPropertiesDisplay from './item-properties-display';
 
 
 class ItemModsDisplay extends Component {
@@ -17,8 +18,8 @@ class ItemModsDisplay extends Component {
       }
       return arr.map((affix) => {
           return (
-              <div>
-                  {affix.stat} {affix.type} {affix.tier} {affix.value}
+              <div id='affix' className="tooltipText">
+                  {affix.text[0]}{affix.value}{affix.text[1]}
               </div>
           );
       });
@@ -29,8 +30,10 @@ class ItemModsDisplay extends Component {
             return (<div>No Mods</div>);
         }
         return (
-          <div>
-                {this.formatAffixData()}
+          <div className='itemStatsContainer'>
+              <ItemPropertiesDisplay />
+              <img className='itemImage' src={require("../../assets/BodyDEX/AssassinsGarb.png")} alt='BodyDEX'/>
+              {this.formatAffixData()}
           </div>
         );
     }

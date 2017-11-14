@@ -2,13 +2,13 @@ import {BodyDEX} from '../all-mods';
 import store from '../../index';
 
 
-export const addNewAffix = () => {
-    if (store.getState().currentAffixs.length<6) {
+export const craftTransmute = () => {
+    if (store.getState().currentAffixs.length<6 && store.getState().currentProperties.rarity==="normal") {
       return {
-        type: 'ADD_NEW_AFFIX',
+        type: 'CRAFT_TRANSMUTE',
         payload: chooseRandomAffix()
       };
-    } else {
+    } else if (store.getState().currentAffixs.length>=6) {
         alert("No more room for mods");
       return {
         type: 'ITEM_AFFIXS_FULL'
@@ -16,25 +16,35 @@ export const addNewAffix = () => {
     };
 };
 
+export const normalToMagic = () => {
+    return {
+      type: 'SET_RARITY_MAGIC'
+    }
+};
+
 function chooseRandomAffix() {
     var baseMods = BodyDEX;
+    console.log(store.getState().currentProperties.rarity);
     var filteredMods = filterBaseMods(baseMods);
     var chosenMod =  chooseRandomMod(filteredMods);
     var chosenTier = chooseRandomTier(chosenMod);
     var chosenValue = chooseRandomValue(chosenTier);
     if (chosenMod.length===1) {
       return  [{"affix": chosenMod[0].Name,
+                "text": chosenMod[0].Text,
                 "stat": chosenMod[0].Stat,
                 "type": chosenMod[0].Type,
                 "tier": chosenTier[0].tier,
                 "value": chosenValue.chosenValue[0]}];
     } else if(chosenMod.length===2) {
       return  [{"affix": chosenMod[0].Name,
+                "text": chosenMod[0].Text,
                 "stat": chosenMod[0].Stat,
                 "type": chosenMod[0].Type,
                 "tier": chosenTier[0].tier,
                 "value": chosenValue.chosenValue[0]},
                {"affix": chosenMod[1].Name,
+                "text": chosenMod[1].Text,
                 "stat": chosenMod[1].Stat,
                 "type": chosenMod[1].Type,
                 "tier": chosenTier[1].tier,
