@@ -2,14 +2,6 @@ import {BodyDEX} from '../all-mods';
 import store from '../../index';
 
 
-export const selectUser = (user) => {
-    console.log("You clicked on user: ", user.first);
-    return {
-        type: 'USER_SELECTED',
-        payload: user
-    }
-};
-
 export const addNewAffix = () => {
     if (store.getState().currentAffixs.length<6) {
       return {

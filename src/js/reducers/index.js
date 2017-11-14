@@ -1,6 +1,4 @@
 import {combineReducers} from 'redux';
-import UserReducer from './reducer-users';
-import ActiveUserReducer from './reducer-active-user';
 import AddNewAffixReducer from './add-new-mod';
 
 /*
@@ -9,8 +7,6 @@ import AddNewAffixReducer from './add-new-mod';
  * */
 
 const allReducers = combineReducers({
-    users: UserReducer,
-    activeUser: ActiveUserReducer,
     currentAffixs: AddNewAffixReducer
 });
 
