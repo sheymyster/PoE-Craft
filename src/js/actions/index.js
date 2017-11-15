@@ -4,8 +4,26 @@ import store from '../../index';
 
 export const craftTransmute = () => {
     if (store.getState().currentAffixs.length<6 && store.getState().currentProperties.rarity==="normal") {
+      return function(dispatch) {
+        dispatch({type: 'SET_RARITY_MAGIC'})
+        var newModCount = (Math.floor(Math.random()*(2))+1);
+        for (var i=0; i<newModCount; i++) {
+          dispatch({type: 'ADD_NEW_AFFIX',
+                  payload: chooseRandomAffix()})
+        }
+      }
+    } else if (store.getState().currentAffixs.length>=6) {
+        alert("No more room for mods");
       return {
-        type: 'CRAFT_TRANSMUTE',
+        type: 'ITEM_AFFIXS_FULL'
+      }
+    };
+};
+
+export const craftAugment = () => {
+    if (store.getState().currentAffixs.length<6) {
+      return {
+        type: 'ADD_NEW_AFFIX',
         payload: chooseRandomAffix()
       };
     } else if (store.getState().currentAffixs.length>=6) {
@@ -16,15 +34,83 @@ export const craftTransmute = () => {
     };
 };
 
-export const normalToMagic = () => {
+export const craftScour = () => {
+  if (store.getState().currentProperties.rarity!=="normal") {
+    return function(dispatch) {
+      dispatch({type: 'CRAFT_SCOUR'})
+      dispatch({type: 'SET_RARITY_NORMAL'})
+    };
+  } else {
+    alert("Item is already normal rarity");
     return {
-      type: 'SET_RARITY_MAGIC'
+      type: 'ALREADY_NORMAL'
+    }
+  };
+};
+
+export const craftAlteration = () => {
+  return function(dispatch) {
+    dispatch({type: 'CRAFT_SCOUR'})
+    var newModCount = (Math.floor(Math.random()*(2))+1);
+    for (var i=0; i<newModCount; i++) {
+      dispatch({type: 'ADD_NEW_AFFIX',
+              payload: chooseRandomAffix()})
+    }
+  }
+};
+
+export const craftRegal = () => {
+  return function(dispatch) {
+    dispatch({type: 'SET_RARITY_RARE'})
+    dispatch({type: 'ADD_NEW_AFFIX',
+              payload: chooseRandomAffix()})
+  }
+};
+
+export const craftExalt = () => {
+  if (store.getState().currentAffixs.length<6) {
+    return {
+      type: 'ADD_NEW_AFFIX',
+      payload: chooseRandomAffix()
+    };
+  } else if (store.getState().currentAffixs.length>=6) {
+      alert("No more room for mods");
+    return {
+      type: 'ITEM_AFFIXS_FULL'
+    }
+  };
+};
+
+export const craftChaos = () => {
+  return function(dispatch) {
+    dispatch({type: 'CRAFT_SCOUR'})
+    var newModCount = (Math.floor(Math.random()*(2))+4);
+    for (var i=0; i<newModCount; i++) {
+      dispatch({type: 'ADD_NEW_AFFIX',
+              payload: chooseRandomAffix()})
+    }
+  }
+}
+
+export const craftAlchemy = () => {
+  return function(dispatch) {
+    dispatch({type: 'SET_RARITY_RARE'})
+    var newModCount = (Math.floor(Math.random()*(2))+4);
+    for (var i=0; i<newModCount; i++) {
+      dispatch({type: 'ADD_NEW_AFFIX',
+              payload: chooseRandomAffix()})
+    }
+  }
+}
+
+export const setRarity = (rarity) => {
+    return {
+      type: 'SET_RARITY_'+rarity
     }
 };
 
 function chooseRandomAffix() {
     var baseMods = BodyDEX;
-    console.log(store.getState().currentProperties.rarity);
     var filteredMods = filterBaseMods(baseMods);
     var chosenMod =  chooseRandomMod(filteredMods);
     var chosenTier = chooseRandomTier(chosenMod);
@@ -57,6 +143,12 @@ function filterBaseMods(baseMods) {
     var allowed = Object.keys(baseMods);
     var prefixCount = 0;
     var suffixCount = 0;
+    var maxPrefix = 1;
+    var maxSuffix = 1;
+    if (store.getState().currentProperties.rarity==="rare") {
+      maxPrefix = 3;
+      maxSuffix = 3;
+    }
     for (var i=0; i<store.getState().currentAffixs.length; i++) {
       unAllowedAffixs.push(store.getState().currentAffixs[i][0].affix);
       if (store.getState().currentAffixs[i][0].type==="Prefix") {
@@ -65,14 +157,14 @@ function filterBaseMods(baseMods) {
         suffixCount++
       };
     }
-    if (prefixCount===3) {
+    if (prefixCount===maxPrefix) {
       for (var m=0; m<allowed.length; m++) {
         if (baseMods[allowed[m]][0].Type==="Prefix") {
           unAllowedAffixs.push(allowed[m]);
         }
       }
     }
-    if (suffixCount===3) {
+    if (suffixCount===maxSuffix) {
       for (var n=0; n<allowed.length; n++) {
         if (baseMods[allowed[n]][0].Type==="Suffix") {
           unAllowedAffixs.push(allowed[n]);

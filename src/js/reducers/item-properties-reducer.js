@@ -6,6 +6,12 @@ export default function ( state = {
         case 'SET_RARITY_MAGIC':
             return {...state, "rarity" : "magic"};
             break;
+        case 'SET_RARITY_NORMAL':
+            return {...state, "rarity" : "normal"};
+            break;
+        case 'SET_RARITY_RARE':
+            return {...state, "rarity" : "rare"};
+            break;
         case 'CHANGE_LEVEL-REQUIREMENTS':
             return state;
             break;

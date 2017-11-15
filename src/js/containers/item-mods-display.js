@@ -5,7 +5,7 @@ import ItemPropertiesDisplay from './item-properties-display';
 
 class ItemModsDisplay extends Component {
     formatAffixData() {
-      var A = this.props.currentAffixs;
+      var A = this.props.currentAffixs.slice();
       var arr = [];
       var i;
       var n = A.length;
@@ -13,6 +13,9 @@ class ItemModsDisplay extends Component {
         var j;
         var m = A[i].length
         for (j=0;j<m;j++) {
+          if (A[i][j].affix==="Life Regen") {
+            A[i][j].value /= 100;
+          }
           arr.push(A[i][j]);
         }
       }
