@@ -239,7 +239,7 @@ function chooseRandomValue(chosenTier) {
     for (var i=0; i<chosenTier.length; i++) {
       var min = Math.ceil(chosenTier[i].range[0]);
       var max = Math.floor(chosenTier[i].range[1]);
-      chosenValue.push(Math.floor(Math.random()*(max-min+1))+min)};
+      chosenValue.push((Math.floor(Math.random()*(max-min+1)))+min)};
     return {
       chosenValue
     }

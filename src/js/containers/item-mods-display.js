@@ -13,10 +13,11 @@ class ItemModsDisplay extends Component {
         var j;
         var m = A[i].length
         for (j=0;j<m;j++) {
-          if (A[i][j].affix==="Life Regen") {
-            A[i][j].value /= 100;
+          var modValue = A[i][j];
+          if (modValue.affix==="Life Regen") {
+            modValue.value /= 100;
           }
-          arr.push(A[i][j]);
+          arr.push(modValue);
         }
       }
       return arr.map((affix) => {
