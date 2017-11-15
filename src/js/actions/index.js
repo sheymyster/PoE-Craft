@@ -103,10 +103,23 @@ export const craftAlchemy = () => {
   }
 }
 
+export const craftAnnulment = () => {
+  return {
+    type: 'REMOVE_RANDOM_AFFIX',
+    payload: chooseAffixToRemove()
+  }
+}
+
 export const setRarity = (rarity) => {
     return {
       type: 'SET_RARITY_'+rarity
     }
+};
+
+function chooseAffixToRemove() {
+    var currentAffixCount = store.getState().currentAffixs.length;
+    var removalIndex = Math.floor(Math.random()*(currentAffixCount));
+    return removalIndex;
 };
 
 function chooseRandomAffix() {

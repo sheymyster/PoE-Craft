@@ -9,6 +9,10 @@ export default function (state = [], action) {
             let blankArray = [];
             return blankArray;
             break;
+        case 'REMOVE_RANDOM_AFFIX':
+            newArray.splice(action.payload, 1)
+            return newArray;
+            break;
         default:
             return state;
     }

@@ -13,14 +13,23 @@ class ItemModsDisplay extends Component {
         var j;
         var m = A[i].length
         for (j=0;j<m;j++) {
-          var modValue = A[i][j];
+          var modValue = Object.assign({}, A[i][j]);
           if (modValue.affix==="Life Regen") {
             modValue.value /= 100;
           }
           arr.push(modValue);
         }
       }
-      return arr.map((affix) => {
+      var result = [];
+      arr.forEach(function (a) {
+        if (!this[a.text]) {
+          this[a.text] = { affix: a.affix, text: a.text, value: 0 };
+          result.push(this[a.text]);
+        }
+        this[a.text].value += a.value;
+      }, Object.create(null));
+      console.log(result);
+      return result.map((affix) => {
           return (
               <div id='affix' className="tooltipText">
                   {affix.text[0]}{affix.value}{affix.text[1]}
@@ -36,8 +45,8 @@ class ItemModsDisplay extends Component {
         return (
           <div className='itemStatsContainer'>
               <ItemPropertiesDisplay />
-              <img className='itemImage' src={require("../../assets/BodyDEX/AssassinsGarb.png")} alt='BodyDEX'/>
-              {this.formatAffixData()}
+              <div className="itemImageDiv"><img src={require("../../assets/BodyDEX/AssassinsGarb.png")} alt='BodyDEX'/></div>
+              <div className="affixContainer">{this.formatAffixData()}</div>
           </div>
         );
     }

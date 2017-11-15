@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {craftTransmute, craftAugment, craftScour, craftAlteration, craftRegal, craftExalt, craftAlchemy, craftChaos} from '../actions/index';
+import {craftTransmute, craftAugment, craftScour, craftAlteration, craftRegal, craftExalt, craftAlchemy, craftChaos, craftAnnulment} from '../actions/index';
 require('../../index.css');
 
 
@@ -63,8 +63,17 @@ class CraftingButtonField extends Component {
       }
     }
 
+    annulmentItem() {
+      if (this.props.currentAffixs.length>0) {
+        this.props.craftAnnulment();
+      } else {
+        alert("Item must have at least one property to use an Annulment Orb")
+      }
+    }
+
     render() {
         return (
+          <div className="craftingOptionsContainer">
           <div className='buttonContainer'>
             <button id="transmute" onClick={() => this.transmuteItem()} />
             <button id="augment" onClick={() => this.augmentItem()} />
@@ -73,7 +82,9 @@ class CraftingButtonField extends Component {
             <button id="exalt" onClick={() => this.exaltItem()} />
             <button id="chaos" onClick={() => this.chaosItem()} />
             <button id="alchemy" onClick={() => this.alchemyItem()} />
+            <button id="annulment" onClick={() => this.annulmentItem()} />
             <button id="scour" onClick={() => this.props.craftScour()} />
+          </div>
           </div>
         );
     }
@@ -94,6 +105,7 @@ function matchDispatchToProps(dispatch){
                                craftExalt: craftExalt,
                                craftAlchemy: craftAlchemy,
                                craftChaos: craftChaos,
+                               craftAnnulment: craftAnnulment,
                                craftAlteration: craftAlteration}, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(CraftingButtonField);

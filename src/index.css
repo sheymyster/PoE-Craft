@@ -6,8 +6,6 @@
 html {
 	background: url('./assets/MainBackground.jpg') no-repeat center center;
 	background-size: cover;
-	border-style: solid;
-	border-color: green;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
@@ -20,8 +18,6 @@ html, body {
 
 body {
 	height: 100%;
-	border-style: solid;
-	border-color: purple;
 }
 
 #root {
@@ -30,8 +26,6 @@ body {
 	align-items: center;
 	justify-content: center;
 	flex-direction: row;
-	border-style: solid;
-	border-color: yellow;
 	height: 100%;
 }
 
@@ -42,33 +36,78 @@ body {
 	justify-content: center;
 	flex-direction: row;
 	font-family: poefont;
-	font-size: 1em;
-	border-style: solid;
-	border-color: white;
-	border-width: 2px;
-	height: 70%;
-	width: 70%;
+  background-color: rgba(0, 0, 0, 0.8);
+	height: 60%;
+	width: 60%;
 }
 
 .itemStatsContainer {
 	display: flex;
 	display: -webkit-flex;
 	flex-direction: column;
-	border-style: solid;
-	border-color: red;
-	border-width: 2px;
-	background-color: black;
-	padding: 4px;
-  min-height: 75%;
-  width: 40%;
+	/* background-color: rgba(256, 0, 0, 0.2); */
+  height: 100%;
+  width: 50%;
+
 }
 
-.itemImage {
-	align-self: center;
+.affixContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 50%;
+  width: 100%;
+}
+
+.craftingOptionsContainer {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  /* background-color: rgba(0, 256, 0, 0.2); */
+  height: 100%;
+  width: 50%;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.itemHeaderContainer {
+  position: relative;
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+.itemHeaderText {
+  position: absolute;
+  font-size: 2vw;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#itemHeaderImage {
+  width: 100%;
+}
+
+.itemImageDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  height: 50%;
+  width: 100%;
+}
+
+.itemProperties {
+  margin: 3px;
 }
 
 .tooltipText {
 	text-align: center;
+  font-size: 1.5vw;
 }
 
 #affix, #qualityValue, #propertyValue{
@@ -80,14 +119,22 @@ body {
 }
 
 .buttonContainer {
-	border-style: solid;
-	border-color: orange;
-	background-color: black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+	/* background-color: rgba(0, 0, 256, 0.2); */
+  width: 100%;
+  height: 40%;
 }
 
 button {
-	height: 50px;
-	width: 50px;
+  width: 15%;
+  max-width: 46px;
+  min-width: 30px;
+  max-height: 46px;
+  min-height: 30px;
+  margin: 5px;
 	border: none;
 }
 
@@ -128,5 +175,10 @@ button {
 
 #scour {
 	background: url('./assets/Buttons/Scour.png') no-repeat;
+	background-size: 100%;
+}
+
+#annulment {
+	background: url('./assets/Buttons/Annulment.png') no-repeat;
 	background-size: 100%;
 }

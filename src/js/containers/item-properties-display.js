@@ -57,8 +57,18 @@ class ItemPropertiesDisplay extends Component {
         }
         defenseStats.push(<div id="propertyText" className="tooltipText">{A.defenseStats[i][0]} <span id="propertyValue">{defenseValue}</span></div>)
       }
+      var itemHeaderName = "Assassin\'s Garb";
+      var itemHeaderImageSource;
+      if (this.props.currentProperties.rarity==="normal") {
+        itemHeaderImageSource = require("../../assets/Misc/NormalItemHeader.png")
+      } else if (this.props.currentProperties.rarity==="magic") {
+        itemHeaderImageSource = require("../../assets/Misc/MagicItemHeader.png")
+      } else {
+        itemHeaderImageSource = require("../../assets/Misc/RareItemHeader.png")
+      }
         return (
           <div className="itemProperties">
+                <div className="itemHeaderContainer"><img id="itemHeaderImage" src={itemHeaderImageSource}></img><div className="itemHeaderText">{itemHeaderName}</div></div>
                 <div id='propertyText' className="tooltipText">Quality: <span id="qualityValue">+20%</span></div>
                 {defenseStats}
           </div>
