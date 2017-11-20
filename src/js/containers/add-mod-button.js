@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import DynamicDisplay from './dynamic-display-container';
 import {craftTransmute, craftAugment, craftScour, craftAlteration, craftRegal, craftExalt, craftAlchemy,
-  craftChaos, craftDivine, craftAnnulment, resetCurrencyCounter, changeDisplay} from '../actions/index';
+  craftChaos, craftDivine, craftAnnulment, resetCurrencyCounter, changeOptionConfiguration} from '../actions/index';
 require('../../index.css');
 
 
@@ -82,7 +82,7 @@ class CraftingButtonField extends Component {
     }
 
     openOptionsMenu() {
-      this.props.changeDisplay('optionMenuDisplay');
+      this.props.changeOptionConfiguration('CHANGE_DISPLAY_STATUS','optionMenuDisplay');
     }
 
     render() {
@@ -102,8 +102,8 @@ class CraftingButtonField extends Component {
             </div>
             <DynamicDisplay />
             <div className="resetButtonDiv">
-              <button className="resetCurrencyCounter" onClick={() => this.props.resetCurrencyCounter()}><span>RESET</span></button>
-              <button onClick={() => this.openOptionsMenu()}><span>OPTIONS</span></button>
+              <button className= "resetCurrencyCounter" onClick={() => this.props.resetCurrencyCounter()}><span>RESET</span></button>
+              <button className= 'resetCurrencyCounter' onClick={() => this.openOptionsMenu()}><span>OPTIONS</span></button>
             </div>
           </div>
         );
@@ -113,7 +113,8 @@ class CraftingButtonField extends Component {
 function mapStateToProps(state) {
     return {
         currentProperties: state.currentProperties,
-        currentAffixs: state.currentAffixs
+        currentAffixs: state.currentAffixs,
+        optionConfiguration: state.optionConfiguration
     };
 }
 
@@ -129,6 +130,6 @@ function matchDispatchToProps(dispatch){
                                craftDivine: craftDivine,
                                craftAlteration: craftAlteration,
                                resetCurrencyCounter: resetCurrencyCounter,
-                               changeDisplay: changeDisplay}, dispatch);
+                               changeOptionConfiguration: changeOptionConfiguration}, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(CraftingButtonField);

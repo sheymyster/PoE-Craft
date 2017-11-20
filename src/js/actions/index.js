@@ -137,10 +137,10 @@ export const craftDivine = () => {
   }
 };
 
-export const changeDisplay = (display) => {
+export const changeOptionConfiguration = (optionName, newConfig) => {
   return {
-    type: 'CHANGE_DISPLAY_STATUS',
-    payload: display
+    type: optionName,
+    payload: newConfig
   }
 }
 

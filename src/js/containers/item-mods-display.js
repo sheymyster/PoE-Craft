@@ -4,8 +4,20 @@ import ItemPropertiesDisplay from './item-properties-display';
 
 
 class ItemModsDisplay extends Component {
+    sumLikeAffixes(array) {
+      var result = [];
+      array.forEach(function (a) {
+        if (!this[a.text]) {
+          this[a.text] = { affix: a.affix, text: a.text, value: 0 };
+          result.push(this[a.text]);
+        }
+        this[a.text].value += a.value;
+      }, Object.create(null));
+      return result;
+    }
     formatAffixData() {
       var A = this.props.currentAffixs.slice();
+      console.log(A);
       var arr = [];
       for (var i=0; i<A.length; i++) {
         for (var j=0; j<A[i].length ;j++) {
@@ -16,21 +28,25 @@ class ItemModsDisplay extends Component {
           arr.push(modValue);
         }
       }
-      var result = [];
-      arr.forEach(function (a) {
-        if (!this[a.text]) {
-          this[a.text] = { affix: a.affix, text: a.text, value: 0 };
-          result.push(this[a.text]);
-        }
-        this[a.text].value += a.value;
-      }, Object.create(null));
-      return result.map((affix) => {
+      if (!this.props.optionConfiguration.affixDetail) {
+        var result = this.sumLikeAffixes(arr);
+        return result.map((affix) => {
           return (
               <div id='affix' className="tooltipText">
                   {affix.text[0]}{affix.value}{affix.text[1]}
               </div>
           );
-      });
+        });
+      } else {
+        var result = arr;
+        return result.map((affix) => {
+          return (
+              <div id='affix' className="tooltipText">
+                  {affix.text[0]}{affix.value}{affix.text[1]}       <span id="tierandtype">{affix.type[0]}{affix.tier}</span>
+              </div>
+          );
+        });
+      }
     }
 
     render() {
@@ -50,7 +66,8 @@ class ItemModsDisplay extends Component {
 
 function mapStateToProps(state) {
     return {
-        currentAffixs: state.currentAffixs
+        currentAffixs: state.currentAffixs,
+        optionConfiguration: state.optionConfiguration
     };
 }
 export default connect(mapStateToProps)(ItemModsDisplay);
