@@ -13,6 +13,9 @@ export default function (state = [], action) {
             newArray.splice(action.payload, 1)
             return newArray;
             break;
+        case 'RANDOMIZE_AFFIX_VALUES':
+            return action.payload;
+            break;
         default:
             return state;
     }

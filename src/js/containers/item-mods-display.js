@@ -7,12 +7,8 @@ class ItemModsDisplay extends Component {
     formatAffixData() {
       var A = this.props.currentAffixs.slice();
       var arr = [];
-      var i;
-      var n = A.length;
-      for (i=0;i<n;i++) {
-        var j;
-        var m = A[i].length
-        for (j=0;j<m;j++) {
+      for (var i=0; i<A.length; i++) {
+        for (var j=0; j<A[i].length ;j++) {
           var modValue = Object.assign({}, A[i][j]);
           if (modValue.affix==="Life Regen") {
             modValue.value /= 100;
@@ -28,7 +24,6 @@ class ItemModsDisplay extends Component {
         }
         this[a.text].value += a.value;
       }, Object.create(null));
-      console.log(result);
       return result.map((affix) => {
           return (
               <div id='affix' className="tooltipText">

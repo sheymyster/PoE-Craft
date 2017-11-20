@@ -11,6 +11,8 @@ export const craftTransmute = () => {
           dispatch({type: 'ADD_NEW_AFFIX',
                   payload: chooseRandomAffix()})
         }
+        dispatch({type: 'COUNT_CURRENCY',
+                  payload: ['transmute', 1]})
       }
     } else if (store.getState().currentAffixs.length>=6) {
         alert("No more room for mods");
@@ -22,10 +24,12 @@ export const craftTransmute = () => {
 
 export const craftAugment = () => {
     if (store.getState().currentAffixs.length<6) {
-      return {
-        type: 'ADD_NEW_AFFIX',
-        payload: chooseRandomAffix()
-      };
+      return function(dispatch) {
+        dispatch({type: 'ADD_NEW_AFFIX',
+                  payload: chooseRandomAffix()})
+        dispatch({type: 'COUNT_CURRENCY',
+                  payload: ['augment', 1]})
+      }
     } else if (store.getState().currentAffixs.length>=6) {
         alert("No more room for mods");
       return {
@@ -39,6 +43,8 @@ export const craftScour = () => {
     return function(dispatch) {
       dispatch({type: 'CRAFT_SCOUR'})
       dispatch({type: 'SET_RARITY_NORMAL'})
+      dispatch({type: 'COUNT_CURRENCY',
+                payload: ['scour', 1]})
     };
   } else {
     alert("Item is already normal rarity");
@@ -56,6 +62,8 @@ export const craftAlteration = () => {
       dispatch({type: 'ADD_NEW_AFFIX',
               payload: chooseRandomAffix()})
     }
+    dispatch({type: 'COUNT_CURRENCY',
+              payload: ['alteration', 1]})
   }
 };
 
@@ -64,14 +72,18 @@ export const craftRegal = () => {
     dispatch({type: 'SET_RARITY_RARE'})
     dispatch({type: 'ADD_NEW_AFFIX',
               payload: chooseRandomAffix()})
+    dispatch({type: 'COUNT_CURRENCY',
+              payload: ['regal', 1]})
   }
 };
 
 export const craftExalt = () => {
   if (store.getState().currentAffixs.length<6) {
-    return {
-      type: 'ADD_NEW_AFFIX',
-      payload: chooseRandomAffix()
+    return function(dispatch) {
+      dispatch({type: 'ADD_NEW_AFFIX',
+                payload: chooseRandomAffix()})
+      dispatch({type: 'COUNT_CURRENCY',
+                payload: ['exalt', 1]})
     };
   } else if (store.getState().currentAffixs.length>=6) {
       alert("No more room for mods");
@@ -89,8 +101,10 @@ export const craftChaos = () => {
       dispatch({type: 'ADD_NEW_AFFIX',
               payload: chooseRandomAffix()})
     }
+    dispatch({type: 'COUNT_CURRENCY',
+              payload: ['chaos', 1]})
   }
-}
+};
 
 export const craftAlchemy = () => {
   return function(dispatch) {
@@ -100,26 +114,73 @@ export const craftAlchemy = () => {
       dispatch({type: 'ADD_NEW_AFFIX',
               payload: chooseRandomAffix()})
     }
+    dispatch({type: 'COUNT_CURRENCY',
+              payload: ['alchemy', 1]})
   }
-}
+};
 
 export const craftAnnulment = () => {
+  return function(dispatch) {
+    dispatch({type: 'REMOVE_RANDOM_AFFIX',
+              payload: chooseAffixToRemove()})
+    dispatch({type: 'COUNT_CURRENCY',
+              payload: ['annulment', 1]})
+  }
+};
+
+export const craftDivine = () => {
+  return function(dispatch) {
+    dispatch({type: 'RANDOMIZE_AFFIX_VALUES',
+              payload: randomizeAffixValues()})
+    dispatch({type: 'COUNT_CURRENCY',
+              payload: ['divine', 1]})
+  }
+};
+
+export const changeDisplay = (display) => {
   return {
-    type: 'REMOVE_RANDOM_AFFIX',
-    payload: chooseAffixToRemove()
+    type: 'CHANGE_DISPLAY_STATUS',
+    payload: display
   }
 }
 
 export const setRarity = (rarity) => {
-    return {
-      type: 'SET_RARITY_'+rarity
-    }
+  return {
+    type: 'SET_RARITY_'+rarity
+  }
+};
+
+export const countCurrency = (type, amount) => {
+  return {
+    type: 'COUNT_CURRENCY',
+    payload: [type, amount]
+  }
+};
+
+export const resetCurrencyCounter = () => {
+  return {
+    type: 'RESET_CURRENCY_COUNTER'
+  }
 };
 
 function chooseAffixToRemove() {
     var currentAffixCount = store.getState().currentAffixs.length;
     var removalIndex = Math.floor(Math.random()*(currentAffixCount));
     return removalIndex;
+};
+
+function randomizeAffixValues() {
+    var A = store.getState().currentAffixs.slice();
+    for (var i=0; i<A.length; i++) {
+      for (var j=0; j<A[i].length; j++) {
+        var affixTier = A[i][j].tier;
+        var min = A[i][j].tierRange[0];
+        var max = A[i][j].tierRange[1];
+        var newValue = ((Math.floor(Math.random()*(max-min+1)))+min);
+        A[i][j].value = newValue;
+      }
+    }
+    return A;
 };
 
 function chooseRandomAffix() {
@@ -129,24 +190,30 @@ function chooseRandomAffix() {
     var chosenTier = chooseRandomTier(chosenMod);
     var chosenValue = chooseRandomValue(chosenTier);
     if (chosenMod.length===1) {
+      var firstAffixTier = chosenTier[0].tier
       return  [{"affix": chosenMod[0].Name,
                 "text": chosenMod[0].Text,
                 "stat": chosenMod[0].Stat,
                 "type": chosenMod[0].Type,
                 "tier": chosenTier[0].tier,
+                "tierRange": chosenMod[0].Tiers[firstAffixTier].range,
                 "value": chosenValue.chosenValue[0]}];
     } else if(chosenMod.length===2) {
+      var firstAffixTier = chosenTier[0].tier
+      var secondAffixTier = chosenTier[1].tier
       return  [{"affix": chosenMod[0].Name,
                 "text": chosenMod[0].Text,
                 "stat": chosenMod[0].Stat,
                 "type": chosenMod[0].Type,
                 "tier": chosenTier[0].tier,
+                "tierRange": chosenMod[0].Tiers[firstAffixTier].range,
                 "value": chosenValue.chosenValue[0]},
                {"affix": chosenMod[1].Name,
                 "text": chosenMod[1].Text,
                 "stat": chosenMod[1].Stat,
                 "type": chosenMod[1].Type,
                 "tier": chosenTier[1].tier,
+                "tierRange": chosenMod[1].Tiers[secondAffixTier].range,
                 "value": chosenValue.chosenValue[1]}];
     }
 };
