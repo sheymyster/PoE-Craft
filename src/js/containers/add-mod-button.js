@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import DynamicDisplay from './dynamic-display-container';
 import {craftTransmute, craftAugment, craftScour, craftAlteration, craftRegal, craftExalt, craftAlchemy,
-  craftChaos, craftDivine, craftAnnulment, resetCurrencyCounter, changeOptionConfiguration} from '../actions/index';
+  craftChaos, craftDivine, craftAnnulment, resetCurrencyCounter, changeOptionConfiguration, masterCraft} from '../actions/index';
 require('../../index.css');
 
 
@@ -100,6 +100,10 @@ class CraftingButtonField extends Component {
               <button data-tooltip="Downgrades a magic or rare item to normal and removes all affixes" id="scour" onClick={() => this.props.craftScour()} />
               <button data-tooltip="Rerolls all affix values, but only in the tier they already were" id="divine" onClick={() => this.divineItem()} />
             </div>
+            <div className="metamodButtonContainer">
+              <button data-tooltip="Crafts the Master Meta-Mod 'Prefixes cannot be changed' Cost: 2 Exalt" className= "resetCurrencyCounter" onClick={() => this.props.masterCraft('Haku', 'Metamod')}><span>Prefix Lock</span></button>
+              <button data-tooltip="Crafts the Master Meta-Mod 'Suffixes cannot be changed' Cost: 2 Exalt" className="resetCurrencyCounter" onClick={() => this.props.masterCraft('Tora', 'Metamod')}><span>Suffix Lock</span></button>
+            </div>
             <DynamicDisplay />
             <div className="resetButtonDiv">
               <button className= "resetCurrencyCounter" onClick={() => this.props.resetCurrencyCounter()}><span>RESET</span></button>
@@ -130,6 +134,7 @@ function matchDispatchToProps(dispatch){
                                craftDivine: craftDivine,
                                craftAlteration: craftAlteration,
                                resetCurrencyCounter: resetCurrencyCounter,
+                               masterCraft: masterCraft,
                                changeOptionConfiguration: changeOptionConfiguration}, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(CraftingButtonField);

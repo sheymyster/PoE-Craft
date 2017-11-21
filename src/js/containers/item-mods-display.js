@@ -57,15 +57,28 @@ class ItemModsDisplay extends Component {
       }
     }
 
+    formatCraftedAffixData() {
+      if (this.props.currentProperties.craftedAffix === {}) {
+        return <div></div>
+      } else {
+         var A = Object.assign({}, this.props.currentProperties.craftedAffix);
+         return (
+            <div id='affix' className='tooltipText'>
+              {A.Text}
+            </div>
+         );
+      }
+    }
+
     render() {
-        if (!this.props.currentAffixs) {
-            return (<div>No Mods</div>);
-        }
         return (
           <div className='itemStatsContainer'>
               <ItemPropertiesDisplay />
               <div className="itemImageDiv"><img src={require("../../assets/BodyDEX/AssassinsGarb.png")} alt='BodyDEX'/></div>
-              <div className="affixContainer">{this.formatAffixData()}</div>
+              <div className="affixContainer">
+                {this.formatAffixData()}
+                {this.formatCraftedAffixData()}
+              </div>
           </div>
         );
     }
@@ -75,6 +88,7 @@ class ItemModsDisplay extends Component {
 function mapStateToProps(state) {
     return {
         currentAffixs: state.currentAffixs,
+        currentProperties: state.currentProperties,
         optionConfiguration: state.optionConfiguration
     };
 }

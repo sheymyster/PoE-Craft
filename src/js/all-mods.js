@@ -1,6 +1,6 @@
 
 export const BodyDEX =
-{ "Life" : [{"Name" : "Life", "Stat" : "Life", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
+{ "Life" : [{"Name" : "Life", "Stat" : "Life", "Type" : "Prefix", "Nature": "Natural", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [110, 119], text: "Rapturous", weight : 1000, ilvl: 81},
   2 : { tier : 2, range : [100, 109], text: "Vigorous", weight : 1000, ilvl: 73},
   3 : { tier : 3, range : [90, 99], text: "Fecund", weight : 1000, ilvl: 64},
@@ -14,7 +14,7 @@ export const BodyDEX =
   11 : { tier : 11, range : [10, 19], text: "Healthy", weight : 1000, ilvl: 5},
   12 : { tier : 12, range : [3, 9], text: "Hale", weight : 1000, ilvl: 1}},
   "Text" : ["+", " To Maximum Life"]}],
-  "Flat Evasion" : [{"Name" : "Flat Evasion", "Stat" : "Flat Evasion", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
+  "Flat Evasion" : [{"Name" : "Flat Evasion", "Stat" : "Flat Evasion", "Nature": "Natural", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [323, 400], text: "Vaporous", weight : 1000, ilvl: 70},
   2 : { tier : 2, range : [139, 322], text: "Blurred", weight : 1000, ilvl: 56},
   3 : { tier : 3, range : [61, 138], text: "Fleet", weight : 1000, ilvl: 42},
@@ -22,7 +22,7 @@ export const BodyDEX =
   5 : { tier : 5, range : [11, 35], text: "Dancer\'s", weight : 1000, ilvl: 18},
   6 : { tier : 6, range : [3, 10], text: "Agile", weight : 1000, ilvl: 1}},
   "Text" : ["+", " To Evasion Rating"]}],
-  "Hybrid %Evasion/%StunBlock" : [{"Name" : "Hybrid %Evasion/%StunBlock", "Stat" : "Hybrid %Evasion", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
+  "Hybrid %Evasion/%StunBlock" : [{"Name" : "Hybrid %Evasion/%StunBlock", "Stat" : "Hybrid %Evasion", "Nature": "Natural", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [39, 42], text: "Hummingbird\'s", weight : 1000, ilvl: 78},
   2 : { tier : 2, range : [33, 38], text: "Dragonfly\'s", weight : 1000, ilvl: 60},
   3 : { tier : 3, range : [27, 32], text: "Wasp\'s", weight : 1000, ilvl: 44},
@@ -30,7 +30,7 @@ export const BodyDEX =
   5 : { tier : 5, range : [14, 20], text: "Moth\'s", weight : 1000, ilvl: 19},
   6 : { tier : 6, range : [6, 13], text: "Mosquito\'s", weight : 1000, ilvl: 2}},
   "Text" : ["", "% Increased Evasion Rating"]},
-                          {"Name" : "Hybrid %Evasion/%StunBlock", "Stat" : "Hybrid %StunBlock", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
+                          {"Name" : "Hybrid %Evasion/%StunBlock", "Stat" : "Hybrid %StunBlock", "Nature": "Natural", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [16, 17], weight : 1000, ilvl: 78},
   2 : { tier : 2, range : [14, 15], weight : 1000, ilvl: 60},
   3 : { tier : 3, range : [12, 13], weight : 1000, ilvl: 44},
@@ -38,7 +38,7 @@ export const BodyDEX =
   5 : { tier : 5, range : [8, 9], weight : 1000, ilvl: 19},
   6 : { tier : 6, range : [6, 7], weight : 1000, ilvl: 2}},
   "Text" : ["", "% Increased Stun And Block Recovery"]}],
-"%Evasion" : [{"Name" : "%Evasion", "Stat" : "%Evasion", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
+"%Evasion" : [{"Name" : "%Evasion", "Stat" : "%Evasion", "Nature": "Natural", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [92, 100], text: "Mirage\'s", weight : 1000, ilvl: 84},
   2 : { tier : 2, range : [80, 91], text: "Nightmare\'s", weight : 1000, ilvl: 72},
   3 : { tier : 3, range : [68, 79], text: "Phantasm\'s", weight : 1000, ilvl: 60},
@@ -47,25 +47,25 @@ export const BodyDEX =
   6 : { tier : 6, range : [27, 42], text: "Ghost\'s", weight : 1000, ilvl: 19},
   7 : { tier : 7, range : [15, 26], text: "Shade\'s", weight : 1000, ilvl: 3}},
   "Text" : ["", "% Increased Evasion Rating"]}],
-"Physical Reflect" : [{"Name" : "Physical Reflect", "Stat" : "Physical Reflect", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
+"Physical Reflect" : [{"Name" : "Physical Reflect", "Stat" : "Physical Reflect", "Nature": "Natural", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [25, 50], text: "Jagged", weight : 1000, ilvl: 35},
   2 : { tier : 2, range : [11, 24], text: "Barbed", weight : 1000, ilvl: 20},
   3 : { tier : 3, range : [5, 10], text: "Spiny", weight : 1000, ilvl: 10},
   4 : { tier : 4, range : [1, 4], text: "Thorny", weight : 1000, ilvl: 1}},
   "Text" : ["Reflects ", " Physical Damage To Melee Attackers"]}],
-"Hybrid Flat Evasion/Life" : [{"Name" : "Hybrid Flat Evasion/Life", "Stat" : "Hybrid Flat Evasion", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
+"Hybrid Flat Evasion/Life" : [{"Name" : "Hybrid Flat Evasion/Life", "Stat" : "Hybrid Flat Evasion", "Nature": "Natural", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [96, 120], text: "Ibex\'s", weight : 500, ilvl: 46},
   2 : { tier : 2, range : [43, 95], text: "Ram\'s", weight : 1000, ilvl: 30},
   3 : { tier : 3, range : [21, 42], text: "Fawn\'s", weight : 1000, ilvl: 46},
   4 : { tier : 4, range : [14, 20], text: "Flea\'s", weight : 1000, ilvl: 30}},
   "Text" : ["+", " To Evasion Rating"]},
-                          {"Name" : "Hybrid Flat Evasion/Life", "Stat" : "Hybrid Life", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
+                          {"Name" : "Hybrid Flat Evasion/Life", "Stat" : "Hybrid Life", "Nature": "Natural", "Type" : "Prefix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [34, 38], weight : 1000, ilvl: 46},
   2 : { tier : 2, range : [29, 33], weight : 1000, ilvl: 30},
   3 : { tier : 3, range : [24, 28], weight : 1000, ilvl: 46},
   4 : { tier : 4, range : [18, 23], weight : 1000, ilvl: 30}},
   "Text" : ["+", " To Maximum Life"]}],
-"Dexterity" : [{"Name" : "Dexterity", "Stat" : "Dexterity", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
+"Dexterity" : [{"Name" : "Dexterity", "Stat" : "Dexterity", "Nature": "Natural", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [51, 55], text: "Of The Wind", weight : 1000, ilvl: 82},
   2 : { tier : 2, range : [43, 50], text: "Of The Phantasm", weight : 1000, ilvl: 74},
   3 : { tier : 3, range : [38, 42], text: "Of The Jaguar", weight : 1000, ilvl: 66},
@@ -76,7 +76,7 @@ export const BodyDEX =
   8 : { tier : 8, range : [13, 17], text: "Of The Lynx", weight : 1000, ilvl: 11},
   9 : { tier : 9, range : [8, 12], text: "Of The Mongoose", weight : 1000, ilvl: 1}},
   "Text" : ["+", " To Dexterity"]}],
-"Life Regen" : [{"Name" : "Life Regen", "Stat" : "Life Regen", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
+"Life Regen" : [{"Name" : "Life Regen", "Stat" : "Life Regen", "Nature": "Natural", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [601, 700], text: "Of The Phoenix", weight : 1000, ilvl: 78},
   2 : { tier : 2, range : [501, 600], text: "Of The Troll", weight : 1000, ilvl: 59},
   3 : { tier : 3, range : [401, 500], text: "Of The Hydra", weight : 1000, ilvl: 44},
@@ -84,7 +84,7 @@ export const BodyDEX =
   5 : { tier : 5, range : [201, 300], text: "Of The Lizard", weight : 1000, ilvl: 18},
   6 : { tier : 6, range : [100, 200], text: "Of The Newt", weight : 1000, ilvl: 1}},
   "Text" : ["", " Life Regenerated Per Second"]}],
-"Cold Resistance" : [{"Name" : "Cold Resistance", "Stat" : "Cold Resistance", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
+"Cold Resistance" : [{"Name" : "Cold Resistance", "Stat" : "Cold Resistance", "Nature": "Natural", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [46, 48], text: "Of Haast", weight : 1000, ilvl: 84},
   2 : { tier : 2, range : [42, 45], text: "Of The Ice", weight : 1000, ilvl: 72},
   3 : { tier : 3, range : [36, 41], text: "Of The Polar Bear", weight : 1000, ilvl: 60},
@@ -94,7 +94,7 @@ export const BodyDEX =
   7 : { tier : 7, range : [12, 17], text: "Of The Seal", weight : 1000, ilvl: 14},
   8 : { tier : 8, range : [6, 11], text: "Of The Inuit", weight : 1000, ilvl: 1}},
   "Text" : ["+", "% To Cold Resistance"]}],
-"Fire Resistance" : [{"Name" : "Fire Resistance", "Stat" : "Fire Resistance", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
+"Fire Resistance" : [{"Name" : "Fire Resistance", "Stat" : "Fire Resistance", "Nature": "Natural", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [46, 48], text: "Of Tzteosh", weight : 1000, ilvl: 84},
   2 : { tier : 2, range : [42, 45], text: "Of The Magma", weight : 1000, ilvl: 72},
   3 : { tier : 3, range : [36, 41], text: "Of The Volcano", weight : 1000, ilvl: 60},
@@ -104,7 +104,7 @@ export const BodyDEX =
   7 : { tier : 7, range : [12, 17], text: "Of The Salamander", weight : 1000, ilvl: 14},
   8 : { tier : 8, range : [6, 11], text: "Of The Whelpling", weight : 1000, ilvl: 1}},
   "Text" : ["+", "% To Fire Resistance"]}],
-"Lightning Resistance" : [{"Name" : "Lightning Resistance", "Stat" : "Lightning Resistance", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
+"Lightning Resistance" : [{"Name" : "Lightning Resistance", "Stat" : "Lightning Resistance", "Nature": "Natural", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [46, 48], text: "Of Ephij", weight : 1000, ilvl: 84},
   2 : { tier : 2, range : [42, 45], text: "Of The Lightning", weight : 1000, ilvl: 72},
   3 : { tier : 3, range : [36, 41], text: "Of The Maelstrom", weight : 1000, ilvl: 60},
@@ -114,7 +114,7 @@ export const BodyDEX =
   7 : { tier : 7, range : [12, 17], text: "Of The Squall", weight : 1000, ilvl: 14},
   8 : { tier : 8, range : [6, 11], text: "Of The Cloud", weight : 1000, ilvl: 1}},
   "Text" : ["+", "% To Lightning Resistance"]}],
-"Chaos Resistance" : [{"Name" : "Chaos Resistance", "Stat" : "Chaos Resistance", "Type" : "Suffix", "Weight" : 250, "Tiers" :
+"Chaos Resistance" : [{"Name" : "Chaos Resistance", "Stat" : "Chaos Resistance", "Nature": "Natural", "Type" : "Suffix", "Weight" : 250, "Tiers" :
 { 1 : { tier : 1, range : [31, 35], text: "Of Bameth", weight : 1000, ilvl: 81},
   2 : { tier : 2, range : [26, 30], text: "Of Exile", weight : 1000, ilvl: 65},
   3 : { tier : 3, range : [21, 25], text: "Of Expulsion", weight : 1000, ilvl: 56},
@@ -122,11 +122,11 @@ export const BodyDEX =
   5 : { tier : 5, range : [11, 15], text: "Of Banishment", weight : 1000, ilvl: 30},
   6 : { tier : 6, range : [5, 10], text: "Of The Lost", weight : 1000, ilvl: 16}},
   "Text" : ["+", "% To Chaos Resistance"]}],
-"Reduced Attribute Reqs" : [{"Name" : "Reduced Attribute Reqs", "Stat" : "Reduced Attribute Reqs", "Type" : "Suffix", "Weight" : 850, "Tiers" :
+"Reduced Attribute Reqs" : [{"Name" : "Reduced Attribute Reqs", "Stat" : "Reduced Attribute Reqs", "Nature": "Natural", "Type" : "Suffix", "Weight" : 850, "Tiers" :
 { 1 : { tier : 1, range : [32, 32], text: "Of The Apt", weight : 1000, ilvl: 60},
   2 : { tier : 2, range : [18, 18], text: "Of The Worthy", weight : 1000, ilvl: 36}},
   "Text" : ["", "% Reduced Attribute Requirements"]}],
-"%StunBlock" : [{"Name" : "%StunBlock", "Stat" : "%StunBlock", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
+"%StunBlock" : [{"Name" : "%StunBlock", "Stat" : "%StunBlock", "Nature": "Natural", "Type" : "Suffix", "Weight" : 1000, "Tiers" :
 { 1 : { tier : 1, range : [26, 28], text: "Of Corundum Skin", weight : 1000, ilvl: 79},
   2 : { tier : 2, range : [23, 25], text: "Of Adamantite Skin", weight : 1000, ilvl: 56},
   3 : { tier : 3, range : [20, 22], text: "Of Steel Skin", weight : 1000, ilvl: 42},
@@ -134,7 +134,7 @@ export const BodyDEX =
   5 : { tier : 5, range : [14, 16], text: "Of Stone Skin", weight : 1000, ilvl: 17},
   6 : { tier : 6, range : [11, 13], text: "Of Thick Skin", weight : 1000, ilvl: 1}},
   "Text" : ["", "% Increased Stun And Block Recovery"]}],
-"%Dodge" : [{"Name" : "%Dodge", "Stat" : "%Dodge", "Type" : "Suffix", "Weight" : 2000, "Tiers" :
+"%Dodge" : [{"Name" : "%Dodge", "Stat" : "%Dodge", "Nature": "Natural", "Type" : "Suffix", "Weight" : 2000, "Tiers" :
 { 1 : { tier : 1, range : [5, 6], text: "Of Fog", weight : 500, ilvl: 85},
   2 : { tier : 2, range : [3, 4], text: "Of Haze", weight : 1000, ilvl: 25}},
   "Text" : ["", "% Chance To Dodge Attacks"]}]

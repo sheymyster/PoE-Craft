@@ -1,5 +1,6 @@
 import {BodyDEX} from '../all-mods';
 import {rarePrefixText, rareSuffixText} from '../rarePrefixSuffixNames';
+import {MasterModList} from '../master-craft-mods';
 import store from '../../index';
 
 
@@ -157,12 +158,6 @@ export const changeOptionConfiguration = (optionName, newConfig) => {
   }
 };
 
-export const setRarity = (rarity) => {
-  return {
-    type: 'SET_RARITY_'+rarity
-  }
-};
-
 export const countCurrency = (type, amount) => {
   return {
     type: 'COUNT_CURRENCY',
@@ -173,6 +168,15 @@ export const countCurrency = (type, amount) => {
 export const resetCurrencyCounter = () => {
   return {
     type: 'RESET_CURRENCY_COUNTER'
+  }
+};
+
+export const masterCraft = (master, modName) => {
+  var baseMods = master+'ModList';
+  console.log(baseMods);
+  return {
+    type: 'CRAFT_MASTER_MOD',
+    payload: baseMods[modName]
   }
 };
 

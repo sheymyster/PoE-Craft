@@ -4,7 +4,8 @@ const initialState = {
   rarePrefixText: "",
   rareSuffixText: "",
   "defenseStats" : [["Evasion Rating:", 737]],
-  "levelRequirements" : [["Requires Level", 68], [183, "Dexterity"]]}
+  "levelRequirements" : [["Requires Level", 68], [183, "Dexterity"]],
+  craftedAffix: {}}
 
 
 export default function ( state = initialState, action) {
@@ -26,6 +27,9 @@ export default function ( state = initialState, action) {
             break;
         case 'CHANGE_RARE_SUFFIX':
             return {...state, rareSuffixText : action.payload};
+            break;
+        case 'CRAFT_MASTER_MOD':
+            return {...state, craftedAffix: action.payload};
             break;
         default:
             return state;
