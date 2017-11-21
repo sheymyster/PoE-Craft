@@ -1,6 +1,8 @@
 const initialState = {
   "rarity" : "normal",
   baseItem : 'BodyEV',
+  rarePrefixText: "",
+  rareSuffixText: "",
   "defenseStats" : [["Evasion Rating:", 737]],
   "levelRequirements" : [["Requires Level", 68], [183, "Dexterity"]]}
 
@@ -18,6 +20,12 @@ export default function ( state = initialState, action) {
             break;
         case 'CHANGE_LEVEL-REQUIREMENTS':
             return state;
+            break;
+        case 'CHANGE_RARE_PREFIX':
+            return {...state, rarePrefixText : action.payload};
+            break;
+        case 'CHANGE_RARE_SUFFIX':
+            return {...state, rareSuffixText : action.payload};
             break;
         default:
             return state;

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 
+
 class ItemPropertiesDisplay extends Component {
 
     calculateFlatDefensiveBonuses() {
@@ -38,6 +39,29 @@ class ItemPropertiesDisplay extends Component {
       return percentBonuses;
     }
 
+    findMagicName() {
+      var baseItemName = "Assassin\'s Garb";
+      var A = this.props.currentAffixs.slice();
+      var prefixText = "";
+      var suffixText = "";
+      for (var i=0; i<A.length; i++) {
+        if (A[i][0].type === "Prefix") {
+          prefixText = A[i][0].tierText;
+        }
+        if (A[i][0].type === "Suffix") {
+          suffixText = A[i][0].tierText;
+        }
+      }
+      return prefixText + " " + baseItemName + " " + suffixText
+    }
+
+    findRareName() {
+      var baseItemName = "Assassin\'s Garb";
+      var prefixText = this.props.currentProperties.rarePrefixText;
+      var suffixText = this.props.currentProperties.rareSuffixText;
+      return prefixText + " " + suffixText + " " + baseItemName
+    }
+
     formatPropertyData() {
       var A = Object.assign({}, this.props.currentProperties);
       var B = this.props.currentAffixs.slice();
@@ -57,7 +81,14 @@ class ItemPropertiesDisplay extends Component {
         }
         defenseStats.push(<div id="propertyText" className="tooltipText">{A.defenseStats[i][0]} <span id="propertyValue">{defenseValue}</span></div>)
       }
-      var itemHeaderName = "Assassin\'s Garb";
+      var itemHeaderName;
+      if (this.props.currentProperties.rarity === "magic"){
+        itemHeaderName = this.findMagicName();
+      } else if (this.props.currentProperties.rarity === "rare") {
+        itemHeaderName = this.findRareName();
+      } else {
+        itemHeaderName = "Assassin\'s Garb";
+      }
       var itemHeaderImageSource;
       if (this.props.currentProperties.rarity==="normal") {
         itemHeaderImageSource = require("../../assets/Misc/NormalItemHeader.png")

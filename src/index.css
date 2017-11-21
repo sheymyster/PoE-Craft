@@ -82,7 +82,8 @@ img {
 
 .itemHeaderText {
   position: absolute;
-  font-size: 2vw;
+  font-size: 1.3vw;
+  width: 90%;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);

@@ -1,4 +1,5 @@
 import {BodyDEX} from '../all-mods';
+import {rarePrefixText, rareSuffixText} from '../rarePrefixSuffixNames';
 import store from '../../index';
 
 
@@ -74,6 +75,10 @@ export const craftRegal = () => {
               payload: chooseRandomAffix()})
     dispatch({type: 'COUNT_CURRENCY',
               payload: ['regal', 1]})
+    dispatch({type: 'CHANGE_RARE_PREFIX',
+              payload: chooseNewRarePrefixName()})
+    dispatch({type: 'CHANGE_RARE_SUFFIX',
+              payload: chooseNewRareSuffixName()})
   }
 };
 
@@ -103,6 +108,10 @@ export const craftChaos = () => {
     }
     dispatch({type: 'COUNT_CURRENCY',
               payload: ['chaos', 1]})
+    dispatch({type: 'CHANGE_RARE_PREFIX',
+              payload: chooseNewRarePrefixName()})
+    dispatch({type: 'CHANGE_RARE_SUFFIX',
+              payload: chooseNewRareSuffixName()})
   }
 };
 
@@ -116,6 +125,10 @@ export const craftAlchemy = () => {
     }
     dispatch({type: 'COUNT_CURRENCY',
               payload: ['alchemy', 1]})
+    dispatch({type: 'CHANGE_RARE_PREFIX',
+              payload: chooseNewRarePrefixName()})
+    dispatch({type: 'CHANGE_RARE_SUFFIX',
+              payload: chooseNewRareSuffixName()})
   }
 };
 
@@ -142,7 +155,7 @@ export const changeOptionConfiguration = (optionName, newConfig) => {
     type: optionName,
     payload: newConfig
   }
-}
+};
 
 export const setRarity = (rarity) => {
   return {
@@ -161,6 +174,20 @@ export const resetCurrencyCounter = () => {
   return {
     type: 'RESET_CURRENCY_COUNTER'
   }
+};
+
+function chooseNewRarePrefixName() {
+  var A = rarePrefixText.slice();
+  var randomPrefixNumber = Math.floor(Math.random()*(A.length));
+  var prefixText = A[randomPrefixNumber];
+  return prefixText;
+};
+
+function chooseNewRareSuffixName() {
+  var B = Object.assign({}, rareSuffixText);
+  var randomSuffixNumber = Math.floor(Math.random()*(B.BodyArmor.length));
+  var suffixText = B.BodyArmor[randomSuffixNumber];
+  return suffixText;
 };
 
 function chooseAffixToRemove() {
@@ -197,6 +224,7 @@ function chooseRandomAffix() {
                 "type": chosenMod[0].Type,
                 "tier": chosenTier[0].tier,
                 "tierRange": chosenMod[0].Tiers[firstAffixTier].range,
+                "tierText": chosenMod[0].Tiers[firstAffixTier].text,
                 "value": chosenValue.chosenValue[0]}];
     } else if(chosenMod.length===2) {
       var firstAffixTier = chosenTier[0].tier
@@ -207,6 +235,7 @@ function chooseRandomAffix() {
                 "type": chosenMod[0].Type,
                 "tier": chosenTier[0].tier,
                 "tierRange": chosenMod[0].Tiers[firstAffixTier].range,
+                "tierText": chosenMod[0].Tiers[firstAffixTier].text,
                 "value": chosenValue.chosenValue[0]},
                {"affix": chosenMod[1].Name,
                 "text": chosenMod[1].Text,
@@ -214,6 +243,7 @@ function chooseRandomAffix() {
                 "type": chosenMod[1].Type,
                 "tier": chosenTier[1].tier,
                 "tierRange": chosenMod[1].Tiers[secondAffixTier].range,
+                "tierText": chosenMod[1].Tiers[secondAffixTier].text,
                 "value": chosenValue.chosenValue[1]}];
     }
 };
