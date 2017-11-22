@@ -61,8 +61,10 @@ export const craftScour = () => {
 };
 
 export const craftAlteration = () => {
+  var modsToKeep = checkForMetaMods();
   return function(dispatch) {
-    dispatch({type: 'CRAFT_SCOUR'})
+    dispatch({type: 'CRAFT_SCOUR',
+              payload: modsToKeep})
     var newModCount = (Math.floor(Math.random()*(2))+1);
     for (var i=0; i<newModCount; i++) {
       dispatch({type: 'ADD_NEW_AFFIX',
