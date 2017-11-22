@@ -58,13 +58,13 @@ class ItemModsDisplay extends Component {
     }
 
     formatCraftedAffixData() {
-      if (this.props.currentProperties.craftedAffix === {}) {
+      if (this.props.currentProperties.craftedAffix.length===0) {
         return <div></div>
       } else {
          var A = Object.assign({}, this.props.currentProperties.craftedAffix);
          return (
-            <div id='affix' className='tooltipText'>
-              {A.Text}
+            <div className='craftedModText'>
+              {A[0].Text}
             </div>
          );
       }

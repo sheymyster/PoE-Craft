@@ -6,12 +6,10 @@ export default function (state = [], action) {
             return newArray;
             break;
         case 'CRAFT_SCOUR':
-            let blankArray = [];
-            return blankArray;
+            return action.payload;
             break;
         case 'REMOVE_RANDOM_AFFIX':
-            newArray.splice(action.payload, 1)
-            return newArray;
+            return action.payload;
             break;
         case 'RANDOMIZE_AFFIX_VALUES':
             return action.payload;

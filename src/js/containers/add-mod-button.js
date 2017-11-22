@@ -3,7 +3,8 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import DynamicDisplay from './dynamic-display-container';
 import {craftTransmute, craftAugment, craftScour, craftAlteration, craftRegal, craftExalt, craftAlchemy,
-  craftChaos, craftDivine, craftAnnulment, resetCurrencyCounter, changeOptionConfiguration, masterCraft} from '../actions/index';
+  craftChaos, craftDivine, craftAnnulment, resetCurrencyCounter, changeOptionConfiguration, masterCraft,
+  removeMasterCraft} from '../actions/index';
 require('../../index.css');
 
 
@@ -66,7 +67,7 @@ class CraftingButtonField extends Component {
     }
 
     annulmentItem() {
-      if (this.props.currentAffixs.length>0) {
+      if (this.props.currentAffixs.length+this.props.currentProperties.craftedAffix.length>0) {
         this.props.craftAnnulment();
       } else {
         alert("Item must have at least one property to use an Annulment Orb")
@@ -89,20 +90,21 @@ class CraftingButtonField extends Component {
         return (
           <div className="craftingOptionsContainer">
             <div className='buttonContainer'>
-              <button data-tooltip="Upgrades a normal item to magic and gives it 1 or 2 random affixes" id="transmute" onClick={() => this.transmuteItem()} />
-              <button data-tooltip="Adds an additional property to a magic item if it only has 1 affix" id="augment" onClick={() => this.augmentItem()} />
-              <button data-tooltip="Rerolls a magic item giving it 1 or 2 new random affixes" id="alteration" onClick={() => this.alterationItem()} />
-              <button data-tooltip="Upgrades a magic item to rare and gives it 1 additional random affix" id="regal" onClick={() => this.regalItem()} />
-              <button data-tooltip="Adds 1 additional affix to a rare item" id="exalt" onClick={() => this.exaltItem()} />
-              <button data-tooltip="Rerolls a rare item giving it 4 to 6 new random affixes" id="chaos" onClick={() => this.chaosItem()} />
-              <button data-tooltip="Upgrades a normal item to rare and givings it 4 to 6 random affixes" id="alchemy" onClick={() => this.alchemyItem()} />
-              <button data-tooltip="Randomly removes one affix, but this will not change the items rarity" id="annulment" onClick={() => this.annulmentItem()} />
-              <button data-tooltip="Downgrades a magic or rare item to normal and removes all affixes" id="scour" onClick={() => this.props.craftScour()} />
-              <button data-tooltip="Rerolls all affix values, but only in the tier they already were" id="divine" onClick={() => this.divineItem()} />
+              <button className="orbButton" data-tooltip="Upgrades a normal item to magic and gives it 1 or 2 random affixes" id="transmute" onClick={() => this.transmuteItem()} />
+              <button className="orbButton" data-tooltip="Adds an additional property to a magic item if it only has 1 affix" id="augment" onClick={() => this.augmentItem()} />
+              <button className="orbButton" data-tooltip="Rerolls a magic item giving it 1 or 2 new random affixes" id="alteration" onClick={() => this.alterationItem()} />
+              <button className="orbButton" data-tooltip="Upgrades a magic item to rare and gives it 1 additional random affix" id="regal" onClick={() => this.regalItem()} />
+              <button className="orbButton" data-tooltip="Adds 1 additional affix to a rare item" id="exalt" onClick={() => this.exaltItem()} />
+              <button className="orbButton" data-tooltip="Rerolls a rare item giving it 4 to 6 new random affixes" id="chaos" onClick={() => this.chaosItem()} />
+              <button className="orbButton" data-tooltip="Upgrades a normal item to rare and givings it 4 to 6 random affixes" id="alchemy" onClick={() => this.alchemyItem()} />
+              <button className="orbButton" data-tooltip="Randomly removes one affix, but this will not change the items rarity" id="annulment" onClick={() => this.annulmentItem()} />
+              <button className="orbButton" data-tooltip="Downgrades a magic or rare item to normal and removes all affixes" id="scour" onClick={() => this.props.craftScour()} />
+              <button className="orbButton" data-tooltip="Rerolls all affix values, but only in the tier they already were" id="divine" onClick={() => this.divineItem()} />
             </div>
             <div className="metamodButtonContainer">
-              <button data-tooltip="Crafts the Master Meta-Mod 'Prefixes cannot be changed' Cost: 2 Exalt" className= "resetCurrencyCounter" onClick={() => this.props.masterCraft('Haku', 'Metamod')}><span>Prefix Lock</span></button>
-              <button data-tooltip="Crafts the Master Meta-Mod 'Suffixes cannot be changed' Cost: 2 Exalt" className="resetCurrencyCounter" onClick={() => this.props.masterCraft('Tora', 'Metamod')}><span>Suffix Lock</span></button>
+              <button data-tooltip="Crafts the Master Meta-Mod 'Prefixes cannot be changed' Cost: 2 Exalt" className= "resetCurrencyCounter" onClick={() => this.props.masterCraft('Tora', 'MetaMod')}><span>Prefix Cannot Change</span></button>
+              <button data-tooltip="Crafts the Master Meta-Mod 'Suffixes cannot be changed' Cost: 2 Exalt" className="resetCurrencyCounter" onClick={() => this.props.masterCraft('Haku', 'MetaMod')}><span>Suffix Cannot Change</span></button>
+              <button data-tooltip="Removes any mods crafted through a master crafting" className="resetCurrencyCounter" onClick={() => this.props.removeMasterCraft()}><span>Remove Craft</span></button>
             </div>
             <DynamicDisplay />
             <div className="resetButtonDiv">
@@ -135,6 +137,7 @@ function matchDispatchToProps(dispatch){
                                craftAlteration: craftAlteration,
                                resetCurrencyCounter: resetCurrencyCounter,
                                masterCraft: masterCraft,
+                               removeMasterCraft: removeMasterCraft,
                                changeOptionConfiguration: changeOptionConfiguration}, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(CraftingButtonField);

@@ -111,6 +111,12 @@ img {
   font-size: 1.2vw;
 }
 
+.craftedModText {
+  text-align: center;
+  font-size: 1.2vw;
+  color: white;
+}
+
 #affix, #qualityValue, #propertyValue{
 	color: #88f;
 }
@@ -133,12 +139,14 @@ img {
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
+}
 
+.orbButton {
+  width: 20%;
+  height: 50%;
 }
 
 button {
-  width: 20%;
-  height: 50%;
 	border: none;
   outline: none;
 }
@@ -166,10 +174,12 @@ button {
 .resetCurrencyCounter {
   background-color: black;
   width: 20%;
+  height: 10%;
   border: 2px solid white;
   border-radius: 12px;
   color: #ffffff;
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .resetCurrencyCounter span {
@@ -239,50 +249,50 @@ button {
 
 #transmute {
 	background: url('./assets/Buttons/Transmute.png') no-repeat;
-	background-size: 100%;
+	background-size: 90%;
 }
 
 #augment {
 	background: url('./assets/Buttons/Augment.png') no-repeat;
-	background-size: 100%;
+	background-size: 90%;
 }
 
 #alteration {
 	background: url('./assets/Buttons/Alteration.png') no-repeat;
-	background-size: 100%;
+	background-size: 90%;
 }
 
 #regal {
 	background: url('./assets/Buttons/Regal.png') no-repeat;
-	background-size: 100%;
+	background-size: 90%;
 }
 
 #exalt {
 	background: url('./assets/Buttons/Exalt.png') no-repeat;
-	background-size: 100%;
+	background-size: 90%;
 }
 
 #chaos {
 	background: url('./assets/Buttons/Chaos.png') no-repeat;
-	background-size: 100%;
+	background-size: 90%;
 }
 
 #alchemy {
 	background: url('./assets/Buttons/Alchemy.png') no-repeat;
-	background-size: 100%;
+	background-size: 90%;
 }
 
 #scour {
 	background: url('./assets/Buttons/Scour.png') no-repeat;
-	background-size: 100%;
+	background-size: 90%;
 }
 
 #annulment {
 	background: url('./assets/Buttons/Annulment.png') no-repeat;
-	background-size: 100%;
+	background-size: 90%;
 }
 
 #divine {
 	background: url('./assets/Buttons/Divine.png') no-repeat;
-	background-size: 100%;
+	background-size: 90%;
 }
