@@ -46,6 +46,7 @@ export const craftScour = () => {
     return function(dispatch) {
       dispatch({type: 'CRAFT_SCOUR',
                 payload: modsToKeep})
+      dispatch({type: 'REMOVE_CRAFTED_MOD'})
       if (store.getState().currentAffixs.length===0) {
         dispatch({type: 'SET_RARITY_NORMAL'})
       }
