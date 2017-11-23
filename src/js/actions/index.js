@@ -209,8 +209,15 @@ export const masterCraft = (master, modName) => {
 };
 
 export const removeMasterCraft = () => {
-  return {
-    type: 'REMOVE_CRAFTED_MOD'
+  return function(dispatch) {
+    if (store.getState().currentProperties.craftedAffix.length>0) {
+      dispatch({type: 'REMOVE_CRAFTED_MOD'})
+      dispatch({type: 'COUNT_CURRENCY',
+                payload: ['scour', 1]})
+    } else {
+      alert("There are no crafted mods to be removed")
+      dispatch({type: 'NO_CRAFTED_MOD_EXISTS'})
+    }
   }
 };
 

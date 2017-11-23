@@ -103,8 +103,8 @@ class CraftingButtonField extends Component {
             </div>
             <div className="metamodButtonContainer">
               <button data-tooltip="Crafts the Master Meta-Mod 'Prefixes cannot be changed' Cost: 2 Exalt" className= "resetCurrencyCounter" onClick={() => this.props.masterCraft('Tora', 'MetaMod')}><span>Prefix Cannot Change</span></button>
-              <button data-tooltip="Crafts the Master Meta-Mod 'Suffixes cannot be changed' Cost: 2 Exalt" className="resetCurrencyCounter" onClick={() => this.props.masterCraft('Haku', 'MetaMod')}><span>Suffix Cannot Change</span></button>
               <button data-tooltip="Removes any mods crafted through a master crafting" className="resetCurrencyCounter" onClick={() => this.props.removeMasterCraft()}><span>Remove Craft</span></button>
+              <button data-tooltip="Crafts the Master Meta-Mod 'Suffixes cannot be changed' Cost: 2 Exalt" className="resetCurrencyCounter" onClick={() => this.props.masterCraft('Haku', 'MetaMod')}><span>Suffix Cannot Change</span></button>
             </div>
             <DynamicDisplay />
             <div className="resetButtonDiv">
