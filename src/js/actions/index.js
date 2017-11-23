@@ -299,17 +299,41 @@ function chooseAffixToRemove() {
 };
 
 function randomizeAffixValues() {
-    var A = store.getState().currentAffixs.slice();
-    for (var i=0; i<A.length; i++) {
-      for (var j=0; j<A[i].length; j++) {
-        var affixTier = A[i][j].tier;
-        var min = A[i][j].tierRange[0];
-        var max = A[i][j].tierRange[1];
-        var newValue = ((Math.floor(Math.random()*(max-min+1)))+min);
-        A[i][j].value = newValue;
+  var A = store.getState().currentAffixs.slice();
+  var modsToKeep = [];
+  var modsToDivine = [];
+  if (store.getState().currentProperties.craftedAffix.length>0) {
+    if (store.getState().currentProperties.craftedAffix[0].Name==="PrefixLock") {
+      for (var i=0; i<A.length; i++) {
+        if (A[i][0].type==="Prefix") {
+          modsToKeep.push(A[i])
+        } else {
+          modsToDivine.push(A[i])
+        }
       }
     }
-    return A;
+    if (store.getState().currentProperties.craftedAffix[0].Name==="SuffixLock") {
+      for (var j=0; j<A.length; j++) {
+        if (A[j][0].type==="Suffix") {
+          modsToKeep.push(A[j])
+        } else {
+          modsToDivine.push(A[j])
+        }
+      }
+    }
+  } else {
+    modsToDivine = A.slice();
+  }
+  for (var i=0; i<modsToDivine.length; i++) {
+    for (var j=0; j<modsToDivine[i].length; j++) {
+      var affixTier = modsToDivine[i][j].tier;
+      var min = modsToDivine[i][j].tierRange[0];
+      var max = modsToDivine[i][j].tierRange[1];
+      var newValue = ((Math.floor(Math.random()*(max-min+1)))+min);
+      modsToDivine[i][j].value = newValue;
+    }
+  }
+  return modsToKeep.concat(modsToDivine);
 };
 
 function chooseRandomAffix() {
